@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 /**
  *
@@ -22,6 +23,20 @@ public class FXMLDocumentController implements Initializable {
     private Label labelMessage;
     @FXML
     private AnchorPane Panel;
+    @FXML
+    private Button LogIn;
+    @FXML
+    private Button SignUp;
+    @FXML
+    private Button ReservarPista;
+    @FXML
+    private Button MisReservas;
+    @FXML
+    private Button PistasDisponibles;
+    @FXML
+    private Button Exit;
+    @FXML
+    private Pane VentanaPrinc;
     
     //=========================================================
     // event handler, fired when button is clicked or 
