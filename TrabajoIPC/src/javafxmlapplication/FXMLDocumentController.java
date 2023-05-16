@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -36,7 +37,19 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button Exit;
     @FXML
-    private Pane VentanaPrinc;
+    private Button CalendarioReserva1;
+    @FXML
+    private Button hora1;
+    @FXML
+    private Button hora5;
+    @FXML
+    private Button hora6;
+    @FXML
+    private Button hora4;
+    @FXML
+    private Button hora3;
+    @FXML
+    private Button hora2;
     
     //=========================================================
     // event handler, fired when button is clicked or 
@@ -51,5 +64,15 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void hora1_action(ActionEvent event) {
+        
+    }
+
+    @FXML
+    private void Register(ActionEvent event) {
+        FXMLLoader micargador = new FXMLLoader(getClass.getResource("/SignUp.fxml"));
+    }
     
 }

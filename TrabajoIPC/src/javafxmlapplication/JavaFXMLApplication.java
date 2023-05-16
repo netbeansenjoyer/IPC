@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 
 public class JavaFXMLApplication extends Application {
-    
+    private static Scene scene;
     @Override
     public void start(Stage stage) throws Exception {
         //======================================================================
@@ -22,7 +22,7 @@ public class JavaFXMLApplication extends Application {
         Parent root = loader.load();
         //======================================================================
         // 2- creación de la escena con el nodo raiz del grafo de escena
-        Scene scene = new Scene(root);
+        scene = new Scene(root);
         //======================================================================
         // 3- asiganación de la escena al Stage que recibe el metodo 
         //     - configuracion del stage
@@ -31,7 +31,9 @@ public class JavaFXMLApplication extends Application {
         stage.setTitle("start PROJECT - IPC:");
         stage.show();
     }
-
+    public void setRoot(Parent root){
+        scene.setRoot(root);
+    }
     /**
      * @param args the command line arguments
      */
