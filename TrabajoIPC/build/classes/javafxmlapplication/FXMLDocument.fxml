@@ -2,9 +2,11 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -12,7 +14,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
-
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
 <Pane prefHeight="473.0" prefWidth="748.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.FXMLDocumentController">
    <children>
@@ -33,7 +36,7 @@
                   </SplitMenuButton>
                </children>
             </HBox>
-            <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="LogIn">
+            <Button fx:id="LogIn" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="LogIn">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -41,7 +44,7 @@
                   <Insets right="20.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Sign-Up">
+            <Button fx:id="SignUp" mnemonicParsing="false" onAction="#Register" text="Sign-Up">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -53,9 +56,9 @@
       </HBox>
       <SplitPane dividerPositions="0.2159247995576444" layoutX="12.0" layoutY="86.0" prefHeight="346.0" prefWidth="725.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="321.0" prefWidth="120.0">
                <children>
-                  <GridPane layoutX="10.0" layoutY="29.0" prefHeight="308.0" prefWidth="116.0">
+                  <GridPane layoutX="10.0" layoutY="29.0" prefHeight="297.0" prefWidth="100.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
@@ -66,15 +69,92 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" text="Button" />
-                        <Button mnemonicParsing="false" text="Button" GridPane.rowIndex="1" />
-                        <Button mnemonicParsing="false" text="Button" GridPane.rowIndex="2" />
-                        <Button mnemonicParsing="false" text="Button" GridPane.rowIndex="3" />
+                        <Button fx:id="ReservarPista" mnemonicParsing="false" prefHeight="40.0" prefWidth="107.0" text="Reservar Pista" />
+                        <Button fx:id="MisReservas" mnemonicParsing="false" prefHeight="39.0" prefWidth="103.0" text="Mis Reservas" GridPane.rowIndex="1" />
+                        <Button fx:id="PistasDisponibles" mnemonicParsing="false" prefHeight="37.0" prefWidth="105.0" text="Pistas Disponibles" GridPane.rowIndex="2" />
+                        <Button fx:id="Exit" mnemonicParsing="false" prefHeight="41.0" prefWidth="103.0" text="Exit" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
                </children>
             </AnchorPane>
-          <AnchorPane fx:id="Panel" minHeight="0.0" minWidth="0.0" prefHeight="366.0" prefWidth="512.0" />
+          <AnchorPane fx:id="Panel" minHeight="0.0" minWidth="0.0" prefHeight="344.0" prefWidth="571.0">
+               <children>
+                  <TitledPane animated="false" prefHeight="344.0" prefWidth="564.0" text="RESERVA DE PISTAS">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="CalendarioReserva1" layoutX="462.0" layoutY="52.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="100.0" text="Cambiar Fecha" />
+                              <Label layoutX="28.0" layoutY="6.0" prefHeight="44.0" prefWidth="507.0" text="RECUERDA QUE NO PUEDES RESERVAR MAS DE 2 HORAS CONSECUTIVAS UNA PISTA " textFill="#e11313" underline="true">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="460.0" layoutX="101.0" layoutY="50.0" startX="-100.0" />
+                              <Line endX="460.0" layoutX="102.0" layoutY="91.0" startX="-100.0" />
+                              <Label layoutX="-1.0" layoutY="50.0" prefHeight="41.0" prefWidth="466.0" text="**INTRODUCIR FECHA AQUI. EJ: 14 DE MAYO DE 2023**">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="hora1" layoutX="462.0" layoutY="92.0" mnemonicParsing="false" onAction="#hora1_action" prefHeight="37.0" prefWidth="100.0" text="Selecciona hora" />
+                              <Button fx:id="hora5" layoutX="462.0" layoutY="244.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="100.0" text="Selecciona hora" />
+                              <Button fx:id="hora6" layoutX="462.0" layoutY="281.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="100.0" text="Selecciona hora" />
+                              <Button fx:id="hora4" layoutX="462.0" layoutY="203.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="100.0" text="Selecciona hora" />
+                              <Button fx:id="hora3" layoutX="462.0" layoutY="166.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="100.0" text="Selecciona hora" />
+                              <Button fx:id="hora2" layoutX="462.0" layoutY="129.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="100.0" text="Selecciona hora" />
+                              <Label layoutY="244.0" prefHeight="37.0" prefWidth="463.0" text="PISTA 5 PLACEHOLDER">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutY="281.0" prefHeight="37.0" prefWidth="463.0" text="PISTA 6 PLACEHOLDER">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutY="129.0" prefHeight="37.0" prefWidth="463.0" text="PISTA 2 PLACEHOLDER">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutY="92.0" prefHeight="37.0" prefWidth="463.0" text="PISTA 1 PLACEHOLDER">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="1.0" layoutY="167.0" prefHeight="37.0" prefWidth="463.0" text="PISTA 3 PLACEHOLDER">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="-1.0" layoutY="205.0" prefHeight="37.0" prefWidth="463.0" text="PISTA 4 PLACEHOLDER">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </TitledPane>
+                  <TitledPane animated="false" disable="true" prefHeight="344.0" prefWidth="564.0" text="untitled" visible="false">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Button layoutX="164.0" layoutY="182.0" mnemonicParsing="false" text="Button" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </TitledPane>
+                  <TitledPane animated="false" disable="true" prefHeight="344.0" prefWidth="564.0" text="untitled" visible="false">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Button layoutX="45.0" layoutY="79.0" mnemonicParsing="false" text="Button" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </TitledPane>
+               </children></AnchorPane>
         </items>
       </SplitPane>
    </children>
