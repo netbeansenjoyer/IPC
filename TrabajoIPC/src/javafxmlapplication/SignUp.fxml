@@ -15,9 +15,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="473.0" prefWidth="748.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.SignUpController">
+<BorderPane prefHeight="473.0" prefWidth="748.0" style="-fx-background-color: #B8FFB0;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.SignUpController">
    <top>
-      <HBox alignment="CENTER_LEFT" prefHeight="108.0" prefWidth="600.0" style="-fx-background-color: blue;" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_LEFT" prefHeight="108.0" prefWidth="750.0" style="-fx-background-color: darkgreen;" BorderPane.alignment="CENTER">
          <children>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign-Up" wrappingWidth="127.23632049560547">
                <font>
@@ -26,7 +26,7 @@
             </Text>
          </children>
          <BorderPane.margin>
-            <Insets top="10.0" />
+            <Insets />
          </BorderPane.margin>
          <padding>
             <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
@@ -184,7 +184,7 @@
    <bottom>
       <HBox alignment="CENTER_RIGHT" prefHeight="21.0" prefWidth="710.0" spacing="25.0" BorderPane.alignment="TOP_LEFT">
          <children>
-            <Button fx:id="botA" disable="true" mnemonicParsing="false" onAction="#aceptar" style="-fx-background-color: blue;" text="Aceptar" textFill="WHITE">
+            <Button fx:id="botA" mnemonicParsing="false" onAction="#aceptar" style="-fx-background-color: green;" text="Aceptar" textFill="WHITE">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -199,7 +199,7 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Button>
-            <Button fx:id="botC" mnemonicParsing="false" onAction="#cancelar" style="-fx-background-color: blue;" text="Cancelar" textFill="WHITE">
+            <Button fx:id="botC" cancelButton="true" mnemonicParsing="false" onAction="#cancelar" style="-fx-background-color: darkred;" text="Cancelar" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>

@@ -4,9 +4,13 @@
  */
 package javafxmlapplication;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,18 +18,24 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import model.Club;
 import model.ClubDAOException;
 import model.Member;
+
 
 /**
  * FXML Controller class
@@ -69,7 +79,6 @@ public class SignUpController implements Initializable {
     private Label errTar;
     @FXML
     private Label errsvc;
-    Club club;
     @FXML
     private ImageView photo;
     Image img;
@@ -79,188 +88,160 @@ public class SignUpController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            // TODO
-            club = Club.getInstance();
-        } catch (ClubDAOException ex) {
-            Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-      img = new Image("Librerias/tenisClub.jar/default.png");
-      photo.setImage(img);
         
+      img = new Image("/avatars/default.png");
+      photo.setImage(img);
+      TextTar.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+          if (!newValue.matches("\\d*")) {
+              TextTar.setText(newValue.replaceAll("[^\\d]", ""));
+          }
+          if(newValue.length() >16){TextTar.setText(oldValue);}
+      });
+      TextTel.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+          if (!newValue.matches("\\d*")) {
+              TextTel.setText(newValue.replaceAll("[^\\d]", ""));
+          }
+          
+      });
+      TextSVC.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+          
+          if (!newValue.matches("\\d*")) {
+              TextSVC.setText(newValue.replaceAll("[^\\d]", ""));
+          }
+          if(newValue.length() >3){TextSVC.setText(oldValue);}
+      });
+        TextNomb.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+          if (!newValue.matches("[a-zA-Z]*")) {
+              TextNomb.setText(newValue.replaceAll("[^[a-zA-Z]]", ""));
+          }
+        });
+        TextApell.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+          if (!newValue.matches("([a-zA-Z]*)")) {
+              TextApell.setText(newValue.replaceAll("[^([a-zA-Z]|[ \\t\\n\\x0B\\f\\r])]", ""));
+          }
+        });
+        TextNick.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+          if (!newValue.matches("(([a-zA-Z]*)+\\d*)")) {
+              TextNick.setText(newValue.replaceAll("[^([a-zA-Z]|\\d)]", ""));
+          }
+        });
 }
 
    @FXML
     private void aceptar(ActionEvent event) throws ClubDAOException, IOException {
+        
+            
+        
+       
         boolean aux = checkName(TextNomb.getText());
         if(aux == false){
-           errName.setDisable(false);
+           errName.setVisible(true);
         }else{
-            errName.setDisable(true);
+            errName.setVisible(false);
         }
         
         boolean aux2 = checkApellidos(TextApell.getText());
-        if(aux == false){
-           errApell.setDisable(false);
+        if(aux2 == false){
+           errApell.setVisible(true);
         }else{
-            errApell.setDisable(true);
+            errApell.setVisible(false);
         }
         
         boolean aux3 = checkNick(TextNick.getText());
-        if(aux == false){
-           errNick.setDisable(false);
+        if(aux3 == false){
+           errNick.setVisible(true);
         }else{
-            errNick.setDisable(true);
+            errNick.setVisible(false);
         }
         
         boolean aux4 = checkPasw(TextPasw.getText());
-        if(aux == false){
-           errpasw.setDisable(false);
+        if(aux4 == false){
+           errpasw.setVisible(true);
         }else{
-            errpasw.setDisable(true);
+            errpasw.setVisible(false);
         }
         boolean aux5 = checkTel(TextTel.getText());
-        if(aux == false){
-           errTel.setDisable(false);
+        if(aux5 == false){
+           errTel.setVisible(true);
         }else{
-            errTel.setDisable(true);
+            errTel.setVisible(false);
         }
         
         boolean aux6 = checkTar(TextTar.getText());
-        if(TextTar.getText() != null){
-        if(aux == false){
-           errTar.setDisable(false);
+        if(TextTar.getText().length() > 1){
+        if(aux6 == false){
+           errTar.setVisible(true);
         }else{
-            errTar.setDisable(true);
+            errTar.setVisible(false);
         }
         }
         boolean aux7 = checkSVC(TextSVC.getText());
         int svc = 0;
-        if(TextSVC.getText() != null){
+        if(TextSVC.getText().length() > 0){
            svc = Integer.parseInt(TextSVC.getText());
-        if(aux == false){
-           errsvc.setDisable(false);
+        if(aux7 == false){
+           errsvc.setVisible(true);
         }else{
-            errsvc.setDisable(true);
+            errsvc.setVisible(false);
         }
                         
         }
        
         boolean aux8 = aux && aux2 && aux3 && aux4 && aux5;
         if((aux8 && !aux6 && !aux7) || (aux8 && aux6 && aux7)){
-            
+            Club club = Club.getInstance();
             club.registerMember(TextNomb.getText(), TextApell.getText(), TextTel.getText(), TextNick.getText(), TextPasw.getText(), TextTar.getText(),svc,img);
+            botA.getScene().getWindow().hide();
+       
         }
     }
 
     @FXML
     private void cancelar(ActionEvent event) {
-        System.exit(0);
+      
+        botC.getScene().getWindow().hide();
+
     }
 
     @FXML
-    private void selFoto(ActionEvent event) {
+    private void selFoto(ActionEvent event) throws FileNotFoundException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Abrir fichero");
+        fileChooser.getExtensionFilters().addAll(
+        
+        new ExtensionFilter("Imágenes", "*.png", "*.jpg"));
+        
+        File selectedFile = fileChooser.showOpenDialog(
+        ((Node)event.getSource()).getScene().getWindow());
+        if (selectedFile != null) {
+        img = new Image(new FileInputStream(selectedFile.getAbsolutePath()));
+        photo.setImage(img);
+        }
     }
     
     private boolean checkName(String nombre){
-        if(nombre != null){
-            
-         for(int i = 0; i < nombre.length(); i++){
-             int aux = (int) nombre.charAt(i);
-             if(!((aux >= 65 && aux <=90) || (aux >= 97 && aux <=122) )){
-                 return false;
-             }
-         }
-         return true;
-        }
-        return false;
+        return nombre.length() > 1;
     }
     
     private boolean checkPasw(String nombre){
-        if(nombre != null){
-            if(nombre.length() < 6){return false;}
-         for(int i = 0; i < nombre.length(); i++){
-             int aux = (int) nombre.charAt(i);
-             if(!((aux >= 48 && aux <= 57) || (aux >= 65 && aux <=90) || 
-                     (aux >= 97 && aux <=122) )){
-                 return false;
-             }
-         }
-         return true;
-        }
-        return false;
+        return nombre.length() >6;
     }
     private boolean checkNick(String nombre) throws ClubDAOException, IOException{
-        if(nombre != null){
-         for(int i = 0; i < nombre.length() - 1; i++){
-             int aux = (int) nombre.charAt(i);
-             if(aux == 32){
-                 return false;
-             }
-         }
-         
-         ArrayList<Member> lista =  (ArrayList<Member>) club.getMembers();
-         
-         for(int i = 0; i < lista.size() - 1; i++){
-             if(lista.get(i).equals(nombre)){
-                 return false;
-             }
-         }
-         return true;
-        }
-        return false;
+        Club club = Club.getInstance();
+        return nombre.length() > 1 && !(club.existsLogin(nombre));
+        
     }
     private boolean checkTar(String nombre){
-        if(nombre != null){
-            if(nombre.length() != 16){return false;}
-         for(int i = 0; i < nombre.length(); i++){
-             int aux = (int) nombre.charAt(i);
-             if(!(aux >= 48 && aux <= 57)){
-                 return false;
-             }
-         }
-         return true;
-        }
-        return false;
+        return nombre.length() > 15;
     }
     private boolean checkTel(String nombre) throws ClubDAOException, IOException{
-        if(nombre != null){
-         for(int i = 0; i < nombre.length() - 1; i++){
-             int aux = (int) nombre.charAt(i);
-             if(!(aux >= 48 && aux <= 57)){
-                 return false;
-             }
-         }
-         return true;
-        }
-        return false;
+        return nombre.length() > 1;
     }
      private boolean checkSVC(String nombre){
-        if(nombre != null){
-            if(nombre.length() != 3){return false;}
-         for(int i = 0; i < nombre.length(); i++){
-             int aux = (int) nombre.charAt(i);
-             if(!(aux >= 48 && aux <= 57) ){
-                 return false;
-             }
-         }
-         return true;
-        }
-        return false;
+       return nombre.length() > 2;
     }
      private boolean checkApellidos(String nombre){
-        if(nombre != null){
-            
-         for(int i = 0; i < nombre.length(); i++){
-             int aux = (int) nombre.charAt(i);
-             if(!((aux >= 65 && aux <=90) || (aux >= 97 && aux <=122)  || (aux == 32))){
-                 return false;
-             }
-         }
-         return true;
-        }
-        return false;
+        return nombre.length() > 1;
     }
+
 }

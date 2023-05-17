@@ -5,11 +5,14 @@
  */
 package javafxmlapplication;
 
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Club;
+import model.ClubDAOException;
 
 
 public class JavaFXMLApplication extends Application {
@@ -20,9 +23,11 @@ public class JavaFXMLApplication extends Application {
         // 1- creación del grafo de escena a partir del fichero FXML
         FXMLLoader loader= new  FXMLLoader(getClass().getResource("FXMLDocument.fxml"));
         Parent root = loader.load();
+        
         //======================================================================
         // 2- creación de la escena con el nodo raiz del grafo de escena
         scene = new Scene(root);
+        
         //======================================================================
         // 3- asiganación de la escena al Stage que recibe el metodo 
         //     - configuracion del stage
@@ -30,15 +35,19 @@ public class JavaFXMLApplication extends Application {
         stage.setScene(scene);
         stage.setTitle("start PROJECT - IPC:");
         stage.show();
+        
+        
     }
-    public void setRoot(Parent root){
+    public static void setRoot(Parent root){
         scene.setRoot(root);
     }
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClubDAOException, IOException {
+        
         launch(args);
+        
         
     }
 
