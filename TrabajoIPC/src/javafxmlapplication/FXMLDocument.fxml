@@ -36,7 +36,7 @@
                   </SplitMenuButton>
                </children>
             </HBox>
-            <Button fx:id="LogIn" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="LogIn">
+            <Button fx:id="LogIn" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#LogIn" text="LogIn">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>

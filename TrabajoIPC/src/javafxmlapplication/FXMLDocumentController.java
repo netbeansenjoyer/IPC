@@ -5,11 +5,8 @@
  */
 package javafxmlapplication;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,12 +15,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.Club;
-import model.ClubDAOException;
+import javafx.stage.Modality;
+import javafx.scene.Scene;
 
 
 /**
@@ -62,8 +59,6 @@ public class FXMLDocumentController implements Initializable {
     private Button hora2;
     
     
-    
-    
     //=========================================================
     // event handler, fired when button is clicked or 
     //                      when the button has the focus and enter is pressed
@@ -73,14 +68,9 @@ public class FXMLDocumentController implements Initializable {
     
     //=========================================================
     // you must initialize here all related with the object 
-
-    /**
-     *
-     * 
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-     
+        // TODO
     }    
 
     @FXML
@@ -89,19 +79,31 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void Register(ActionEvent event) throws IOException {
+    private void Register(ActionEvent event) throws Exception{
         FXMLLoader micargador = new FXMLLoader(getClass().getResource("SignUp.fxml"));
         Parent root = micargador.load();
-         Stage stage = new Stage();
-        
-        SignUpController controlPersona = micargador.getController();
-        Scene scene = new Scene(root, 1000, 600);
+        Stage stage = new Stage();
+       
+        SignUpController control = micargador.getController();
+        Scene scene= new Scene(root, 1000, 600);
         stage.setScene(scene);
-        stage.setTitle("Añadir persona");
+        stage.setTitle("Sign Up");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
-        
-        
+    }
+
+    @FXML
+    private void LogIn(ActionEvent event) throws Exception {
+        FXMLLoader loader = new  FXMLLoader(getClass().getResource("LogIn.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+       
+        LogInController control = loader.getController();
+        Scene scene= new Scene(root, 1000, 600);
+        stage.setScene(scene);
+        stage.setTitle("Log In");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
     
 }
