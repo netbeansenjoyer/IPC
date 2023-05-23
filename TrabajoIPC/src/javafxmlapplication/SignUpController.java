@@ -25,9 +25,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -82,6 +85,10 @@ public class SignUpController implements Initializable {
     @FXML
     private ImageView photo;
     Image img;
+    @FXML
+    private ComboBox<String> comboImg;
+    @FXML
+    private Button delete;
     
     /**
      * Initializes the controller class.
@@ -111,8 +118,8 @@ public class SignUpController implements Initializable {
           if(newValue.length() >3){TextSVC.setText(oldValue);}
       });
         TextNomb.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
-          if (!newValue.matches("[a-zA-Z]*")) {
-              TextNomb.setText(newValue.replaceAll("[^[a-zA-Z]]", ""));
+          if (!newValue.matches("([a-zA-Z]*)")) {
+              TextNomb.setText(newValue.replaceAll("[^([a-zA-Z]|[ \\t\\n\\x0B\\f\\r])]", ""));
           }
         });
         TextApell.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
@@ -124,6 +131,18 @@ public class SignUpController implements Initializable {
           if (!newValue.matches("(([a-zA-Z]*)+\\d*)")) {
               TextNick.setText(newValue.replaceAll("[^([a-zA-Z]|\\d)]", ""));
           }
+        });
+        comboImg.getItems().add("/avatars/default.png");
+        comboImg.getItems().addAll("/avatars/men.PNG", "/avatars/men2.PNG", "/avatars/men3.PNG");
+        comboImg.getItems().addAll("/avatars/men4.PNG", "/avatars/men5.PNG", "/avatars/woman.PNG");
+        comboImg.getItems().addAll("/avatars/woman2.PNG", "/avatars/woman3.PNG", "/avatars/woman4.PNG");
+        comboImg.getItems().addAll("/avatars/woman5.PNG", "/avatars/woman6.PNG");
+        comboImg.setCellFactory(c-> new ImagenTabCell());
+        comboImg.setButtonCell(new ImagenTabCell());
+        comboImg.getSelectionModel().selectedItemProperty().addListener((ob, oldV,newV)->{
+            if(!newV.equals(photo.getImage().getUrl())){
+                photo.setImage(new Image(newV));
+            }
         });
 }
 
@@ -242,6 +261,30 @@ public class SignUpController implements Initializable {
     }
      private boolean checkApellidos(String nombre){
         return nombre.length() > 1;
+    }
+
+    @FXML
+    private void deletePhoto(ActionEvent event) {
+        photo.setImage(new Image("/avatars/default.png"));
+        comboImg.getSelectionModel().select(0);
+    }
+     class ImagenTabCell extends ComboBoxListCell<String> {
+        private ImageView view = new ImageView();
+        private Image imagen;
+
+        @Override
+        public void updateItem(String t, boolean bln) {
+            super.updateItem(t, bln); 
+            if (t == null || bln) {
+                setText(null);
+                setGraphic(null);
+            } else {
+                imagen = new Image(t,25,25,true,true);
+                view.setImage(imagen);
+                setGraphic(view);
+                setText(null);
+            }
+        }
     }
 
 }
