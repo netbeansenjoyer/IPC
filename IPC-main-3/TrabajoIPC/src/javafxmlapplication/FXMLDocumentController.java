@@ -21,6 +21,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.Modality;
 import javafx.scene.Scene;
+import model.Club;
+import model.Member;
 
 
 /**
@@ -58,7 +60,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button hora2;
     
-    
     //=========================================================
     // event handler, fired when button is clicked or 
     //                      when the button has the focus and enter is pressed
@@ -71,6 +72,7 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+      
     }    
 
     @FXML
@@ -83,11 +85,11 @@ public class FXMLDocumentController implements Initializable {
         FXMLLoader micargador = new FXMLLoader(getClass().getResource("SignUp.fxml"));
         Parent root = micargador.load();
         Stage stage = new Stage();
-       
+        
         SignUpController control = micargador.getController();
         Scene scene= new Scene(root, 1000, 600);
         stage.setScene(scene);
-        stage.setTitle("Sign Up");
+        stage.setTitle("Registro de usuario");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }
@@ -101,7 +103,7 @@ public class FXMLDocumentController implements Initializable {
         LogInController control = loader.getController();
         Scene scene= new Scene(root, 1000, 600);
         stage.setScene(scene);
-        stage.setTitle("Log In");
+        stage.setTitle("Inicio de Sesión");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }

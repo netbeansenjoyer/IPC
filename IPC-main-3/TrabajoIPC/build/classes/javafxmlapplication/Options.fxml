@@ -22,7 +22,7 @@
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: limegreen;" BorderPane.alignment="CENTER">
          <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign-Up" wrappingWidth="153.23632049560547">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Options" wrappingWidth="181.5632553100586">
                <font>
                   <Font name="Arial Rounded MT Bold" size="36.0" />
                </font>
@@ -42,8 +42,8 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
          </BorderPane.margin>
          <columnConstraints>
-            <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="SOMETIMES" maxWidth="609.0" minWidth="10.0" prefWidth="302.5" />
-            <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="SOMETIMES" maxWidth="745.0" minWidth="10.0" prefWidth="401.0" />
+            <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="SOMETIMES" maxWidth="609.0" minWidth="10.0" prefWidth="286.669921875" />
+            <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="SOMETIMES" maxWidth="745.0" minWidth="10.0" prefWidth="352.830078125" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints maxHeight="259.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
@@ -82,7 +82,7 @@
             <VBox prefHeight="100.0" prefWidth="155.0" GridPane.rowIndex="4">
                <children>
                   <Label text="Nickname *" textFill="#3c00ff" />
-                  <TextField fx:id="TextNick" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="26.0" minWidth="150.0" prefHeight="26.0" prefWidth="350.0" promptText="Pepe34" />
+                  <TextField fx:id="TextNick" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="26.0" minWidth="150.0" prefHeight="26.0" prefWidth="350.0" promptText="Pepe34" />
                   <Label fx:id="errNick" prefHeight="18.0" prefWidth="112.0" text="Nickname ya usado" textFill="RED" visible="false" />
                </children>
                <GridPane.margin>
@@ -199,9 +199,9 @@
    <bottom>
       <HBox alignment="CENTER_RIGHT" prefHeight="21.0" prefWidth="710.0" spacing="25.0" BorderPane.alignment="TOP_RIGHT">
          <children>
-            <HBox prefHeight="26.0" prefWidth="308.0">
+            <HBox prefHeight="26.0" prefWidth="353.0">
                <children>
-                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="180.0" text="* -&gt; De obligatorio relleno" textFill="#3c00ff" />
+                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="26.0" prefWidth="146.0" text="* -&gt; De obligatorio relleno" textFill="#3c00ff" />
                </children>
             </HBox>
             <Button fx:id="botA" alignment="CENTER" minWidth="80.0" mnemonicParsing="false" onAction="#aceptar" prefWidth="100.0" style="-fx-background-color: limegreen;" text="Aceptar" textFill="WHITE">
@@ -236,7 +236,7 @@
             </Button>
          </children>
          <BorderPane.margin>
-            <Insets bottom="20.0" left="20.0" right="40.0" top="20.0" />
+            <Insets bottom="20.0" left="20.0" right="65.0" top="20.0" />
          </BorderPane.margin>
       </HBox>
    </bottom>
@@ -260,6 +260,6 @@
       </VBox>
    </left>
    <right>
-      <VBox prefHeight="434.0" prefWidth="53.0" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="434.0" prefWidth="64.0" BorderPane.alignment="CENTER" />
    </right>
 </BorderPane>

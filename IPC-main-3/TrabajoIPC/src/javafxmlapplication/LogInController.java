@@ -21,9 +21,14 @@ import model.Club;
 import model.Member;
 import model.ClubDAOException;
 import java.io.IOException;
+import java.lang.NullPointerException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.control.Alert;
+import java.util.Optional;
+import javafx.scene.control.ButtonType;
+import javafx.scene.input.KeyCode;
 
 
 /**
@@ -77,9 +82,44 @@ public class LogInController implements Initializable{
            Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
       } 
         
-        
+     //Cuando pulsemos la tecla enter avanzará al siguiente campo
+     NickName.setOnKeyPressed(event ->{
+         if(event.getCode() == KeyCode.ENTER){
+             Password.requestFocus();
+         }
+     });
+     //Cuando pulsemos enter no llevará al botón de aceptar.
+     Password.setOnKeyPressed(event ->{
+         if(event.getCode() == KeyCode.ENTER){
+             aceptar.requestFocus();
+            //Creamos una alerta para asegurarnos de que el usuario desea realizar el inicio de sesión
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Diálogo de confirmación");
+            alert.setHeaderText("Aceptar");
+            alert.setContentText("¿Desea aceptar e iniciar sesión?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if(result.isPresent() && result.get() == ButtonType.OK) {
+                System.out.println("OK");
+                 aceptar.getScene().getWindow().hide();
+            } else { 
+                System.out.println("CANCEL");
+            }
+      
+         }
+     });
+        //Creamos una alerta para confirmar que el usuario desea salir del inicio de sesión 
         cancelar.setOnAction((event) ->{
-        cancelar.getScene().getWindow().hide();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Diálogo de confirmación");
+            alert.setHeaderText("¿Cancelar?");
+            alert.setContentText("¿Seguro que desea cancelar?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if(result.isPresent() && result.get() == ButtonType.OK) {
+                System.out.println("OK");
+                 cancelar.getScene().getWindow().hide();
+            } else { 
+                System.out.println("CANCEL");
+            }
         });
       }
                 
@@ -87,17 +127,27 @@ public class LogInController implements Initializable{
 
     @FXML
     private void pulsarAceptar(ActionEvent event) throws ClubDAOException, IOException{
+        //try{
         Club club = Club.getInstance();
-     Member log = club.getMemberByCredentials(NickName.textProperty().getValue(), Password.textProperty().getValue());
+        //Si los datos introducidos no coinciden con ningún member registrado entonces aparece un mensaje
+        //de error y hay que realizar el registro de nuevo si se desea.
+        Member log = club.getMemberByCredentials(NickName.textProperty().getValue(), Password.textProperty().getValue());
         if(log == null) {
             NickName.textProperty().setValue("");
             Password.textProperty().setValue("");
             mensajeErr.setVisible(true);
+           
         } else{
             aceptar.getScene().getWindow().hide();
         }
-        }
+       // }catch (NullPointerException e){
+        
+          //  NickName.textProperty().setValue("");
+         //   Password.textProperty().setValue("");
+         //   mensajeErr.setVisible(true);
+//}
     }
+}
         
      
     
