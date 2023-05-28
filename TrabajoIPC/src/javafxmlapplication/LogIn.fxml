@@ -19,12 +19,12 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;">
                <children>
-                  <Label style="-fx-text-fill: blue;" text="NickName:">
+                  <Label style="-fx-text-fill: limegreen;" text="NickName:">
                      <padding>
                         <Insets bottom="10.0" />
                      </padding>
                      <font>
-                        <Font size="12.0" />
+                        <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
                   <TextField fx:id="NickName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="26.0" minWidth="150.0" prefHeight="26.0" prefWidth="350.0" promptText="Pepe34">
@@ -35,7 +35,7 @@
                         <Font size="12.0" />
                      </font>
                   </TextField>
-                  <Label style="-fx-text-fill: blue;" text="Contraseña:">
+                  <Label style="-fx-text-fill: limegreen;" text="Contraseña:">
                      <padding>
                         <Insets bottom="10.0" top="20.0" />
                      </padding>
@@ -48,10 +48,6 @@
                         <Insets left="20.0" right="60.0" />
                      </padding>
                   </PasswordField>
-                  <Text fx:id="mensajePass" fill="#ca0505" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña Incorrecta. Debe ser una combinación de más de 6 carácteres de letras y números " visible="false">
-                     <font>
-                        <Font size="12.0" />
-                     </font></Text>
                   <Text fx:id="mensajeErr" fill="#ca0505" strokeType="OUTSIDE" strokeWidth="0.0" text="NickName y Contraseña incorrectas." visible="false">
                      <font>
                         <Font size="12.0" />
@@ -65,9 +61,9 @@
       </VBox>
    </center>
    <top>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: blue;" BorderPane.alignment="CENTER_LEFT">
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: limegreen;" BorderPane.alignment="CENTER_LEFT">
          <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Log In">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Log In">
                <font>
                   <Font name="Arial Rounded MT Bold" size="36.0" />
                </font>
@@ -77,7 +73,7 @@
             </Text>
          </children>
          <BorderPane.margin>
-            <Insets top="10.0" />
+            <Insets />
          </BorderPane.margin>
          <padding>
             <Insets bottom="0.5" left="20.0" right="20.0" top="10.0" />
@@ -87,7 +83,7 @@
    <bottom>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="25.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER_RIGHT">
          <children>
-            <Button fx:id="aceptar" alignment="BOTTOM_LEFT" minWidth="80.0" mnemonicParsing="false" onAction="#pulsarAceptar" prefWidth="100.0" style="-fx-background-color: blue;" text="Aceptar" textFill="WHITE">
+            <Button fx:id="aceptar" alignment="BOTTOM_LEFT" minWidth="80.0" mnemonicParsing="false" onAction="#pulsarAceptar" prefWidth="100.0" style="-fx-background-color: limegreen;" text="Aceptar" textFill="WHITE">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -102,7 +98,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="cancelar" alignment="BOTTOM_LEFT" minWidth="80.0" mnemonicParsing="false" prefWidth="100.0" style="-fx-background-color: blue;" text="Cancelar" textFill="WHITE">
+            <Button fx:id="cancelar" alignment="BOTTOM_LEFT" minWidth="80.0" mnemonicParsing="false" prefWidth="100.0" style="-fx-background-color: orangered;" text="Cancelar" textFill="WHITE">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
